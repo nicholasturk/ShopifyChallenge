@@ -51,5 +51,5 @@ $:client npm run build
 
 Contributors names and contact info
 
-ex. [Nicholas Sturk](https://nicksturk.tech)
+ex. [Nicholas Sturk](https://www.nicksturk.tech)
 
