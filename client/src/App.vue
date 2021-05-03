@@ -9,20 +9,13 @@
           <input type="text" v-model="userHolder" />
           <label class="ml-2 mr-1">Password:</label>
           <input type="text" v-model="passHolder" />
-          <b-button
-            @click="login()"
-            size="sm"
-            variant="success"
-            class="ml-2 mb-1"
-            >Login</b-button
-          >
+          <b-button @click="login()" size="sm" variant="success" class="ml-2 mb-1">Login</b-button>
         </div>
         <div v-else class="text-left mt-3">
           <h5 class="pl-3">
-            Hi, <span style="font-size: 25px;">{{ username }}.</span>
-            <b-button size="sm" variant="danger" class="ml-3" @click="logout()"
-              >Logout</b-button
-            >
+            Hi,
+            <span style="font-size: 25px;">{{ username }}.</span>
+            <b-button size="sm" variant="danger" class="ml-3" @click="logout()">Logout</b-button>
           </h5>
         </div>
         <UploadImages ref="imageUploader" />
@@ -36,9 +29,7 @@
             buttons
           ></b-form-radio-group>
         </div>
-        <b-button variant="success" class="mt-2" @click="uploadImages">
-          Upload
-        </b-button>
+        <b-button variant="success" class="mt-2" @click="uploadImages">Upload</b-button>
       </div>
       <h4 class="mt-3 my-border pb-3">
         Gallery
@@ -48,20 +39,18 @@
           @click="deleteImages()"
           size="sm"
           variant="danger"
-          >Delete selected</b-button
-        >
+        >Delete selected</b-button>
       </h4>
 
       <div class="row mt-1 pt-3">
-        <div class="col-3 mb-2" v-for="(img, idx) in images" :key="idx">
-          <img :src="`${api}/images/${img.src}`" target="_blank" />
+        <div class="col-3 mb-4" v-for="(img, idx) in images" :key="idx">
+          <img class="border" :src="`${api}/images/${img.src}`" target="_blank" />
           <div>Uploaded by: {{ img.user }}</div>
           <div>Permission: {{ img.permission }}</div>
           <div v-if="username == img.user">
-            <b-form-checkbox v-model="toDelete" :value="img.src">
-              Delete
-            </b-form-checkbox>
+            <b-form-checkbox v-model="toDelete" :value="img.src">Delete</b-form-checkbox>
           </div>
+          <div style="margin-bottom: 125px;"></div>
         </div>
       </div>
     </div>
