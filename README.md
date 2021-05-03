@@ -24,11 +24,15 @@ You can login as any user you please.
 ```
 git clone https://github.com/nicholasturk/shopify-challenge.git
 ```
+```
+cd client && npm install && cd ../server && npm install
+```
 
 ### Running server
 
 ```
-node ./server/app.js
+cd server
+node app.js
 ```
 Visit [localhost:3000](http://localhost:3000) to start using program.
 
