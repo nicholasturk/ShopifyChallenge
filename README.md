@@ -34,7 +34,7 @@ cd shopify-challenge && cd client && npm install && cd ../server && npm install
 $:server node app.js
 ```
 
-## Visit [localhost:3000](http://localhost:3000) to start using program.
+## Visit [localhost:3000](http://localhost:3000) to start using application.
 
 ### Developing front-end
 
@@ -51,5 +51,5 @@ $:client npm run build
 
 Contributors names and contact info
 
-ex. [Nicholas Sturk](https://www.nicksturk.tech)
+ex. [Nicholas Sturk](http://nicksturk.tech/landing)
 
