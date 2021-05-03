@@ -97,43 +97,55 @@ export default {
   },
   methods: {
     async uploadImages() {
+      // Check that user is loggedIn
       if (!this.isLoggedIn) {
         alert("Please login to upload images.");
         return;
       }
 
+      // Ensure something exists that they're trying to upload
       if (this.$refs.imageUploader.Imgs.length === 0) {
         alert("Please attach atleast one photo!");
         return;
       }
 
+      // Upload image with user and file data
       await this.axios.post(`${this.api}/uploadImages`, {
         permission: this.uploadPermission,
         imgs: this.$refs.imageUploader.Imgs,
         user: this.username
       });
 
+      // Refresh data with new images
       await this.fillData();
       this.$refs.imageUploader.Imgs = [];
       this.$refs.imageUploader.files = [];
     },
+
+    // Method to refresh data, called everytime the backend changes
     async fillData() {
       this.toDelete = [];
       this.images = (
         await this.axios.post(`${this.api}/images`, { user: this.username })
       ).data;
     },
+
+    // Method to call the delete images endpoint
     async deleteImages() {
       await this.axios.post(`${this.api}/deleteImages`, {
         toDelete: this.toDelete
       });
       this.fillData();
     },
+
+    // Mock login function
     login() {
       this.username = this.userHolder;
       this.isLoggedIn = true;
       this.fillData();
     },
+
+    // Mock logout function
     logout() {
       this.username = "";
       this.userHolder = "";
