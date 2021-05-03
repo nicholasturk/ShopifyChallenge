@@ -8,14 +8,25 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: "10mb", extended: true }));
 
-app.get("/images", (req, res) => {
-  let ret = [];
+app.post("/images", (req, res) => {
+  console.log("Getting images!");
+  let ret = [],
+    empty = true;
+
+  fs.readFile("images.txt", (err, file) => {
+    if (file.length == 0) res.send([]);
+  });
 
   lineReader.eachLine("images.txt", function(line, last) {
+    empty = false;
     let tmp = line.split("-");
-    ret.push({
-      src: tmp[0]
-    });
+    if (tmp[1] === "public" || tmp[2] == req.body.user) {
+      ret.push({
+        src: tmp[0],
+        permission: tmp[1],
+        user: tmp[2]
+      });
+    }
     if (last) {
       res.send(ret);
     }
@@ -39,11 +50,31 @@ app.post("/uploadImages", (req, res) => {
         if (err) {
           throw err;
         } else {
-          stream.write(`${fileName}.${ext}-${req.body.permission}\n`);
+          stream.write(
+            `\n${fileName}.${ext}-${req.body.permission}-${req.body.user}`
+          );
         }
       }
     );
   }
+  res.send("OK");
+});
+
+app.post("/deleteImages", (req, res) => {
+  let toDelete = new Set(req.body.toDelete);
+  let reWrite = [];
+  lineReader.eachLine("images.txt", function(line, last) {
+    let tmp = line.split("-");
+
+    if (!toDelete.has(tmp[0])) {
+      reWrite.push(line);
+    } else {
+      fs.unlinkSync(`./images/${tmp[0]}`);
+    }
+    if (last) {
+      fs.writeFileSync("./images.txt", reWrite.join("\n"), "utf-8");
+    }
+  });
   res.send("OK");
 });
 
