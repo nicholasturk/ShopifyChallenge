@@ -28,12 +28,13 @@ git clone https://github.com/nicholasturk/shopify-challenge.git
 cd shopify-challenge && cd client && npm install && cd ../server && npm install
 ```
 
-### Running server
+### Start server
 
 ```
 $:server node app.js
 ```
-Visit [localhost:3000](http://localhost:3000) to start using program.
+
+## Visit [localhost:3000](http://localhost:3000) to start using program.
 
 ### Developing front-end
 
