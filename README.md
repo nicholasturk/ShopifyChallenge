@@ -24,29 +24,31 @@ You can login as any user you please.
 ```
 git clone https://github.com/nicholasturk/shopify-challenge.git
 ```
+```
+cd shopify-challenge && cd client && npm install && cd ../server && npm install
+```
 
 ### Running server
 
 ```
-node ./server/app.js
+$:server node app.js
 ```
 Visit [localhost:3000](http://localhost:3000) to start using program.
 
 ### Developing front-end
 
 ```
-cd client && npm run serve
+$:client npm run serve
 ```
 
 ### Build front-end for production
 ```
-cd client && npm run build
+$:client npm run build
 ```
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Nicholas Sturk  
 ex. [Nicholas Sturk](https://nicksturk.tech)
 
